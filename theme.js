@@ -30,3 +30,20 @@ if(toggle){
     }
   });
 }
+
+function tijdgebondenbegroeting(){
+  const uren = new Date().getHours();
+  let bedroeting;
+
+  if (uren <12) {
+    begroeting = 'goedenmorgen';
+  } else if (uren <18) {
+    begroeting = 'goedenmiddag';
+  } else{
+    begroeting = 'goedenavond';
+  }
+
+  console.log(bedroeting);
+
+  return begroeting;
+}
