@@ -188,6 +188,25 @@ main {
   box-shadow: 0 2px 8px white;
 }
 
+.info-blok {
+padding: 1.2cm;
+  border-radius: 25px;
+  background: linear-gradient(145deg, #0b0b0b, #111);
+  color: #1E90FF;
+  text-align: left;
+  box-shadow: 0 0 25px rgba(40,101,170,0.6);
+}
+
+.foto {
+    width: 250px;
+    border-radius: 1000px;
+    box-shadow: 0 2px 8px white;
+}
+
+  
+  
+
+
 /* ===============================
    BUTTONS
 ================================ */
@@ -209,15 +228,115 @@ main {
 /* ===============================
    SECTIONS
 ================================ */
-.about-section,
-.info-blok,
-.portfolio-card,
-.contact-section {
+
+.portfolio-card{
   background: var(--card-bg);
   color: var(--card-text);
   padding: 20px;
   border-radius: 12px;
   box-shadow: var(--shadow);
+}
+
+.contact-section {
+  background-color: #0b0b0b;
+  color: white;
+  padding: 60px;
+  width: 90%;
+  margin: 120px auto;
+  border-radius: 15px;
+  box-shadow: 0 0 30px rgba(0, 120, 255, 0.4);
+}
+.about-section {
+  background-color: #0b0b0b;
+  color: white;
+  padding: 60px;
+  width: 90%;
+  margin: 120px auto;
+  border-radius: 15px;
+  box-shadow: 0 0 30px rgba(0, 102, 255, 0.4);
+}
+
+.about-section h2 {
+  text-align: center;
+  font-size: 2em;
+  color: #0078ff;
+  margin-bottom: 40px;
+}
+
+/* --------------------------------
+   INFO BLOK
+----------------------------------- */
+.info-blok {
+  background-color: #1a1a1a;
+  border-radius: 12px;
+  padding: 20px 30px;
+  margin-bottom: 40px;
+  box-shadow: 0 0 20px rgba(0, 102, 255, 0.5);
+}
+
+.info-blok h3 {
+  color: #0078ff;
+  font-size: 1.4em;
+  margin-bottom: 15px;
+}
+
+.info-content {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.info-content p {
+  flex: 1;
+  font-size: 1em;
+  line-height: 1.6;
+}
+
+.info-content img {
+  width: 200px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 102, 255, 0.5);
+}
+
+
+
+.contact-section h2 {
+  text-align: center;
+  color: #0078ff;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 500px;
+  margin: auto;
+}
+
+.contact-form input,
+.contact-form textarea {
+  background-color: #1a1a1a;
+  color: white;
+  border: 2px solid #0078ff;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.contact-form button {
+  background-color: #0078ff;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.contact-form button:hover {
+  background-color: #1E90FF;
+  transform: scale(1.05)
+
 }
 
 /* ===============================
@@ -230,11 +349,11 @@ main {
   background: white;
   padding: 20px 30px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  box-shadow: 0 0 10px rgba(28, 21, 151, 0.925);
 }
 
 /* ===============================
-   DARK MODE FIXES
+   DARK MODE 
 ================================ */
 body.dark-mode nav a {
   background: #1a1a1a;
