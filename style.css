@@ -1,120 +1,147 @@
-/* -------------------------------
-   PROFESSIONAL iOS TOGGLE SWITCH
--------------------------------- */
-.theme-switch {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
+/* ===============================
+   RESET & VARIABLES
+================================ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.theme-switch input {
-    display: none;
-}
-
-.slider {
-    position: absolute;
-    cursor: pointer;
-    background: #ccc;
-    border-radius: 34px;
-    top: 0; left: 0; right: 0; bottom: 0;
-    transition: .4s;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background: white;
-    border-radius: 50%;
-    transition: .4s;
-}
-
-input:checked + .slider:before {
-    transform: translateX(26px);
-}
-
-
-/* ==========================================
-   GLOBAL VARIABLES (LIGHT + DARK MODE)
-=========================================== */
 :root {
-    /* Light mode */
-    --bg: #ffffff;
-    --text: #000000;
-
-    --card-bg: #ffffff;
-    --card-text: #000000;
-
-    --shadow: 0 20px 30px rgba(0, 68, 255, 0.25);
-
-    --accent-blue: #0044ff;
+  --bg: #ffffff;
+  --text: #000000;
+  --card-bg: #0b0b0b;
+  --card-text: #ffffff;
+  --accent: #0078ff;
+  --shadow: 0 20px 30px rgba(0,68,255,0.3);
 }
 
-/* DARK MODE OVERRIDES */
-.dark-mode {
-    --bg: #0a0a0a;
-    --text: #ffffff;
-
-    --card-bg: #0d0d0d;
-    --card-text: #ffffff;
-
-    --shadow: 0 25px 35px rgba(0, 68, 255, 0.6);
+/* Dark mode variables */
+body.dark-mode {
+  --bg: #111;
+  --text: #ffffff;
+  --card-bg: #111;
+  --card-text: #ffffff;
+  --shadow: 0 25px 35px rgba(0,68,255,0.55);
 }
 
-/* --------------------------------
-   NAVIGATIE
------------------------------------ */
-nav {
+/* ===============================
+   BASE
+================================ */
+body {
+  font-family: Inter, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+/* ===============================
+   THEME SWITCH
+================================ */
+.theme-switch {
+  position: fixed;
+  top: 18px;
+  right: 22px;
+  width: 56px;
+  height: 32px;
+  z-index: 9999;
+}
+
+.theme-switch input { display: none; }
+
+.theme-switch .slider {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #ccc;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.25s;
+}
+
+.theme-switch .slider:before {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 4px;
+  left: 4px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.25s;
+}
+
+.theme-switch input:checked + .slider {
+  background: var(--accent);
+}
+
+.theme-switch input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+/* ===============================
+   HEADER & NAV
+================================ */
+header {
+  background: var(--card-bg);
+  color: var(--card-text);
+  padding: 20px;
+  margin: 80px 15px 0;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+header h1,
+header h4,
+#greeting {
+  text-align: center;
+}
+
+header h4 {
+  color: var(--accent);
+}
+
+/* Nav wrapper */
+.nav-container {
   position: absolute;
   top: 20px;
   left: 20px;
+}
+
+/* Hamburger */
+.hamburger {
+  font-size: 30px;
+  cursor: pointer;
+  color: rgb(88, 6, 212);
+  display: flex;
+}
+
+/* Nav */
+nav {
   display: flex;
   gap: 15px;
 }
 
 nav a {
-  background-color: #0b0b0b;
+  background: #0b0b0b;
   color: white;
   padding: 8px 16px;
-  box-shadow: 0 10px 5px rgba(0, 68, 255, 0.458);
   text-decoration: none;
   font-weight: bold;
   border-radius: 4px;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0 10px 5px rgba(0,68,255,0.46);
+  transition: transform 0.3s, background 0.3s;
 }
 
 nav a:hover {
-  background-color: #1E90FF;
+  background: #1E90FF;
   transform: scale(1.1);
 }
 
-/* --------------------------------
-   HEADER
------------------------------------ */
-header {
-  background-color: #0b0b0b;
-  color: #1E90FF;
-  padding: 20px;
-  margin: 80px 15px 0 15px;
-  border-radius: 10px;
-  box-shadow: 0 20px 15px rgba(0, 68, 255, 0.458);
-}
-
-header h1,
-header h4 {
-  text-align: center;
-  margin: 0;
-}
-
-/* --------------------------------
-   MAIN
------------------------------------ */
+/* ===============================
+   MAIN CONTENT
+================================ */
 main {
   padding: 80px;
   display: flex;
@@ -123,31 +150,27 @@ main {
   gap: 40px;
 }
 
-/* --------------------------------
-   INTRO
------------------------------------ */
 .intro {
   display: flex;
   gap: 50px;
-  justify-content: center;
 }
 
-/* --------------------------------
-   CARD
------------------------------------ */
 .card {
-  background: #0b0b0b;
+  background: var(--card-bg);
+  color: var(--card-text);
   padding: 30px;
   border-radius: 20px;
-  box-shadow: 0 20px 30px rgba(0, 68, 255, 0.686);
+  box-shadow: var(--shadow);
 }
 
-/* --------------------------------
-   BIO + VIERKANT
------------------------------------ */
-.bio {
-  display: flex; 
+/* ===============================
+   BIO / FOTO
+================================ */
+.bio-row {
+  display: flex;
   gap: 40px;
+  width: 90%;
+  margin: 50px auto;
 }
 
 .vierkant {
@@ -156,49 +179,18 @@ main {
   background: linear-gradient(145deg, #0b0b0b, #111);
   color: #1E90FF;
   text-align: center;
-  font-size: 20px;
-  line-height: 1.6;
-  box-shadow: 0 0 25px rgba(40, 101, 170, 0.6), inset 0 0 10px rgba(40, 101, 170, 0.2);
-
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 25px rgba(40,101,170,0.6);
 }
 
-.vierkant:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 40px rgba(0, 68, 255, 0.686),
-   inset 0 0 15px rgba(40, 101, 170, 0.3);
-}
-
-/* --------------------------------
-   FOTO'S
------------------------------------ */
-.profiel-foto {
-  width: 300px; 
-  object-fit: cover;
-}
-
-.profiel-foto img { 
-  width: 100%;
-  height: right 10cm;
+.profiel-foto img {
+  width: 300px;
   border-radius: 10px;
   box-shadow: 0 2px 8px white;
 }
-/* --------------------------------
-   NIEUWE LAYOUT VOOR FOTO & VIERKANT
------------------------------------ */
-.bio-row {
-  display: flex;
-  justify-content: flex-end; 
-  align-items: flex-start; 
-  gap: 40px; 
-  width: 90%; 
-  max-width: 1800px; 
-  margin: 50px auto; 
-}
 
-/* --------------------------------
+/* ===============================
    BUTTONS
------------------------------------ */
+================================ */
 .buttons {
   margin-top: 165px;
   display: flex;
@@ -211,512 +203,89 @@ main {
   padding: 10px 20px;
   border-radius: 20px;
   text-decoration: none;
-  box-shadow: 0 5px 10px turquoise;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0 5px 10px rgb(31, 11, 209);
 }
 
-.buttons :hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 40px turquoise,
-  inset 0 0 10px rgba(40, 101, 170, 0.3);
-}
-
-/* --------------------------------
-   ABOUT SECTION
------------------------------------ */
-.about-section {
-  background-color: #0b0b0b;
-  color: white;
-  padding: 60px;
-  width: 90%;
-  margin: 120px auto;
-  border-radius: 15px;
-  box-shadow: 0 0 30px rgba(0, 102, 255, 0.4);
-}
-
-.about-section h2 {
-  text-align: center;
-  font-size: 2em;
-  color: #0078ff;
-  margin-bottom: 40px;
-}
-
-/* --------------------------------
-   INFO BLOK
------------------------------------ */
-.info-blok {
-  background-color: #1a1a1a;
-  border-radius: 12px;
-  padding: 20px 30px;
-  margin-bottom: 40px;
-  box-shadow: 0 0 20px rgba(0, 102, 255, 0.5);
-}
-
-.info-blok h3 {
-  color: #0078ff;
-  font-size: 1.4em;
-  margin-bottom: 15px;
-}
-
-.info-content {
-  display: flex;
-  gap: 30px;
-  flex-wrap: wrap;
-}
-
-.info-content p {
-  flex: 1;
-  font-size: 1em;
-  line-height: 1.6;
-}
-
-.info-content img {
-  width: 200px;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0, 102, 255, 0.5);
-}
-
-/* --------------------------------
-   PORTFOLIO
------------------------------------ */
-.portfolio {
-  display: right;
-  gap: 60px;
-}
-
-.portfolio-card {
-  background: #0b0b0b;
-  padding: 80px;
-  border-radius: 40px;
-  box-shadow: 0 20px 40px rgba(0, 68, 255, 0.686);
-  position: absolute;
-  top: 20cm;
-  left: 10cm;
-}
-
-/* --------------------------------
-   CONTACT SECTION
------------------------------------ */
+/* ===============================
+   SECTIONS
+================================ */
+.about-section,
+.info-blok,
+.portfolio-card,
 .contact-section {
-  background-color: #0b0b0b;
-  color: white;
-  padding: 60px;
-  width: 90%;
-  margin: 120px auto;
-  border-radius: 15px;
-  box-shadow: 0 0 30px rgba(0, 120, 255, 0.4);
+  background: var(--card-bg);
+  color: var(--card-text);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
 }
 
-.contact-section h2 {
-  text-align: center;
-  color: #0078ff;
-  font-size: 2em;
-  margin-bottom: 20px;
-}
-
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  max-width: 500px;
-  margin: auto;
-}
-
-.contact-form input,
-.contact-form textarea {
-  background-color: #1a1a1a;
-  color: white;
-  border: 2px solid #0078ff;
-  border-radius: 8px;
-  padding: 10px;
-}
-
-.contact-form button {
-  background-color: #0078ff;
-  color: white;
-  padding: 12px 20px;
-  border-radius: 8px;
-  font-weight: bold;
-  transition: transform 0.3s ease;
-}
-
-.contact-form button:hover {
-  background-color: #1E90FF;
-  transform: scale(1.05);
-}
-
-/* --------------------------------
-   COOKIE BANNER
------------------------------------ */
+/* ===============================
+   COOKIE
+================================ */
 .cookie-banner {
   position: fixed;
   bottom: 20px;
   left: 20px;
-  background: #fff;
+  background: white;
   padding: 20px 30px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
-/* --------------------------------
-   DARK MODE (FIXED)
------------------------------------ */
-body.dark-mode {
-  background-color: black;
-  color: white;
-}
-
-/* NAV */
+/* ===============================
+   DARK MODE FIXES
+================================ */
 body.dark-mode nav a {
-  background-color: #1a1a1a;
-  color: white;
-  box-shadow: 0 10px 5px rgba(0, 120, 255, 0.5);
+  background: #1a1a1a;
 }
 
 body.dark-mode nav a:hover {
-  background-color: #0078ff;
+  background: var(--accent);
 }
 
-/* HEADER */
-body.dark-mode header {
-  background-color: #111;
-}
-
-/* CARDS */
-body.dark-mode .card,
-body.dark-mode .info-blok,
-body.dark-mode .futurecard,
-body.dark-mode .portfolio-card,
-body.dark-mode .hobbys {
-  background-color: #111;
-  color: white;
-}
-
-/* VIERKANT */
-body.dark-mode .vierkant {
-  background: linear-gradient(145deg, #111, #0b0b0b);
-  color: white;
-}
-
-/* CONTACT */
-body.dark-mode .contact-section {
-  background-color: #111;
-}
-
-body.dark-mode .contact-form input,
-body.dark-mode .contact-form textarea {
-  background-color: #222;
-  border-color: #1E90FF;
-  color: white;
-}
-
-/* BUTTONS */
-body.dark-mode .btn {
-  background-color: #111;
-  box-shadow: 0 5px 10px #0078ff;
-}
-
-/* COOKIE */
 body.dark-mode .cookie-banner {
-  background-color: #222;
+  background: #222;
   color: white;
-  box-shadow: 0 0 10px rgba(255,255,255,0.1);
-}
-/* DARK MODE FIX */
-.dark-mode {
-    background-color: #111 !important;
-    color: white !important;
 }
 
-/* Make ALL text white in dark mode */
-.dark-mode * {
-    color: white !important;
+/* ===============================
+   🍔 HAMBURGER MENU
+================================ */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  nav {
+    display: none;
+    flex-direction: column;
+    background: #fefefe;
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 10px;
+  }
+
+  nav.active {
+    display: flex;
+  }
 }
 
-/* Make your cards/boxes dark */
-.dark-mode .container,
-.dark-mode .card,
-.dark-mode .box {
-    background: #1a1a1a !important;
+@media (min-width: 769px) {
+  nav {
+    display: flex !important;
+  }
 }
 
-/* Navigation dark mode */
-.dark-mode nav,
-.dark-mode header,
-.dark-mode .navbar {
-    background: #111 !important;
+#countdown {
+    position: absolute;
+    left: 870px;      /* afstand van links */
+    top: 10px;       /* afstand van boven */
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: #ffffff;
+    background: rgba(8, 1, 1, 0.3);
+    padding: 15px 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(10, 14, 206, 0.5);
 }
-/* RESET LIGHT MODE COLORS */
-body:not(.dark-mode) .card,
-body:not(.dark-mode) .info-blok,
-body:not(.dark-mode) .portfolio-card,
-body:not(.dark-mode) .contact-section,
-body:not(.dark-mode) .vierkant {
-    background: white !important;
-    color: black !important;
-    box-shadow: none !important; /* optional */
-}
-/* --------------------------------
-   LIGHT MODE FIX – RESTORE BOXES
------------------------------------ */
-
-body:not(.dark-mode) .card,
-body:not(.dark-mode) .info-blok,
-body:not(.dark-mode) .portfolio-card,
-body:not(.dark-mode) .contact-section,
-body:not(.dark-mode) .vierkant {
-    background: #ffffff !important;
-    color: #000 !important;
-    box-shadow: 0 20px 30px rgba(0, 68, 255, 0.3) !important;
-    border-radius: 20px;
-}
-/* Dark mode basis */
-.dark-mode {
-    background-color: #111;
-    color: white;
-}
-
-/* Boxes / containers */
-.dark-mode .container,
-.dark-mode .info-box,
-.dark-mode .portfolio-box,
-.dark-mode .content,
-.dark-mode .card {
-    background: #1b1b1b !important;
-    color: white !important;
-}
-
-/* Headers blijven netjes */
-.dark-mode h1,
-.dark-mode h2,
-.dark-mode h3 {
-    color: white !important;
-}
-/* Dark mode achtergrond + tekst */
-.dark-mode {
-    background: #111 !important;
-    color: #fff !important;
-}
-
-/* Alle vakjes zwart in dark mode */
-.dark-mode .container,
-.dark-mode .card,
-.dark-mode .info-box,
-.dark-mode .content-box,
-.dark-mode .box {
-    background: #1a1a1a !important;
-    color: #fff !important;
-}
-
-/* Links wit */
-.dark-mode a {
-    color: #fff !important;
-}
-/* ===========
-   VARIABLES
-   =========== */
-:root {
-  --bg: #ffffff;
-  --text: #000000;
-  --card-bg: #0b0b0b;
-  --card-text: #ffffff;
-  --accent: #0078ff;
-  --shadow: 0 20px 30px rgba(0,68,255,0.3);
-}
-
-/* Dark mode */
-body.dark-mode {
-  --bg: #111;
-  --text: #ffffff;
-  --card-bg: #0d0d0d;
-  --card-text: #ffffff;
-  --shadow: 0 25px 35px rgba(0,68,255,0.55);
-}
-
-/* BASE */
- * { box-sizing: border-box; }
-body {
-  margin: 0;
-  font-family: Inter, Arial, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  transition: background 0.25s ease, color 0.25s ease;
-}
-
-/* THEME SWITCH */
-.theme-switch {
-  position: fixed;
-  top: 18px;
-  right: 22px;
-  width: 56px;
-  height: 32px;
-  z-index: 9999;
-}
-.theme-switch input { display: none; }
-.theme-switch .slider {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: #d1d1d1;
-  border-radius: 999px;
-  transition: background 0.25s;
-}
-.theme-switch .slider:before {
-  content: "";
-  position: absolute;
-  left: 4px;
-  top: 4px;
-  width: 24px;
-  height: 24px;
-  background: white;
-  border-radius: 50%;
-  transition: transform 0.25s;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-}
-.theme-switch input:checked + .slider { background: var(--accent); }
-.theme-switch input:checked + .slider:before { transform: translateX(24px); }
-
-/* NAV & HEADER */
-header {
-  background: var(--card-bg);
-  color: var(--card-text);
-  padding: 20px;
-  margin: 80px 15px 0 15px;
-  border-radius: 10px;
-  box-shadow: var(--shadow);
-  position: relative;
-}
-header h1 { margin: 0; text-align: center; }
-header h4 { margin: 0; text-align: center; color: var(--accent); }
-nav {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  display: flex;
-  gap: 15px;
-}
-nav a {
-  text-decoration: none;
-  color: white;
-  background: #0b0b0b;
-  padding: 8px 16px;
-  border-radius: 4px;
-  font-weight: bold;
-  box-shadow: 0 10px 5px rgba(0,68,255,0.46);
-}
-
-/* MAIN */
-main { padding: 80px; position: relative; }
-.intro { display: flex; gap: 50px; justify-content: center; }
-.card {
-  background: var(--card-bg);
-  color: var(--card-text);
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: var(--shadow);
-}
-
-/* VIERKANT */
-.vierkant {
-  position: absolute;
-  top: 23cm;
-  left: 1cm;
-  width: 53%;
-  padding: 1.2cm;
-  border-radius: 25px;
-  background: linear-gradient(145deg, #0b0b0b, #111);
-  color: #1E90FF;
-  text-align: center;
-  font-size: 20px;
-  line-height: 1.6;
-  box-shadow: 0 0 25px rgba(40,101,170,0.6), inset 0 0 10px rgba(40,101,170,0.2);
-}
-.vierkant:hover { transform: scale(1.05); }
-
-/* --------------------------------
-   FOTO'S
------------------------------------ */
-.profiel-foto img { 
-  width: 300px;
-  height: auto; 
-  border-radius: 10px;
-  box-shadow: 0 2px 8px white;
-  object-fit: cover;
-
-}
-
-
-/* BUTTONS */
-.buttons { margin-top: 165px; display: flex; gap: 30px; }
-.btn {
-  background: #0b0b0b;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 20px;
-  text-decoration: none;
-  box-shadow: 0 5px 10px turquoise;
-}
-
-/* ABOUT / INFO BLOK */
-.about-section, .info-blok, .portfolio-card, .contact-section {
-  background: var(--card-bg);
-  color: var(--card-text);
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: var(--shadow);
-}
-
-/* COOKIE */
-.cookie-banner {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  background: #fff;
-  padding: 20px 30px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-}
-
-/* DARK MODE OVERRIDES */
-body.dark-mode {
-  background: var(--bg);
-  color: var(--text);
-}
-body.dark-mode nav a { background: #1a1a1a; color: white; box-shadow: 0 10px 5px rgba(0,120,255,0.5); }
-body.dark-mode nav a:hover { background: #0078ff; }
-body.dark-mode header { background: #111; }
-body.dark-mode .card, body.dark-mode .info-blok, body.dark-mode .portfolio-card, body.dark-mode .contact-section, body.dark-mode .vierkant { background: #111; color: white; }
-body.dark-mode .profiel-foto img { filter: brightness(0.9); }
-
-.futurecard-row {
-  display: flex;
-  flex-direction: column;
-  gap: 100px; /* ruimte tussen rijen */
-}
-
-.futurecard {
-  width: 60%;
-  padding: 20px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-  transition: background 0.3s, color 0.3s;
-}
-
-/* Om en om naar links en rechts */
-.futurecard:nth-child(odd) {
-  align-self: left ;
-}
-
-.futurecard:nth-child(even) {
-  align-self: right;    /* rechts */
-}
-
-/* Dark mode ondersteuning */
-body.dark-mode .futurecard {
-  background: #1a1a1a;
-  color: #fff;
-  box-shadow: 0 10px 20px rgba(0,68,255,0.2);
-}
-
